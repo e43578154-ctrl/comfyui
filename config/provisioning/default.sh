@@ -24,53 +24,57 @@ NODES=(
 )
 
 CHECKPOINT_MODELS=(
-    "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.ckpt"
-    #"https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt"
-    "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
-    "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
+    "https://civitai.com/api/download/models/2514310?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+    
 )
 
-UNET_MODELS=(
 
+
+UNET_MODELS=(
+    "https://civitai.com/api/download/models/2584698?type=Model&format=GGUF&size=full&fp=fp8"
+
+)
+
+TEXT_ENCODERS=(
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/umt5-xxl-enc-fp8_e4m3fn.safetensors"
+)
+
+CLIP_VISION=(
+    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
+)
+
+SAMS= (
+    "https://huggingface.co/1038lab/sam/resolve/main/sam_vit_b.safetensors?download=true"
 )
 
 LORA_MODELS=(
-    #"https://civitai.com/api/download/models/16576"
+    "https://huggingface.co/bithge/sagittal/resolve/main/Alternate_ILV3.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/Haevelyn.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/guro_bisection_sagittal_ill_v2-35-04.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/guro_bisection_sagittal_ill_v2-30-04.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/bhdsx-v2IL.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/Poiseoned_Convulsion.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/Bowel_incontinence.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/Corpse.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/impefg-v2IL.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/stabby_toy_sword_V2.1-000019.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/neckstump_v1.safetensors?download=true"
+    "https://huggingface.co/bithge/sagittal/resolve/main/mingsanta.safetensors?download=true"
+    
+    
 )
 
 VAE_MODELS=(
-    "https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.safetensors"
-    "https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors"
-    "https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
+    
 )
 
 UPSCALE_MODELS=(
-    "https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x4.pth"
-    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth"
-    "https://huggingface.co/Akumetsu971/SD_Anime_Futuristic_Armor/resolve/main/4x_NMKD-Siax_200k.pth"
+    "https://huggingface.co/Kim2091/AnimeSharpV3/resolve/main/2x-AnimeSharpV3.safetensors?download=true"
+  
 )
 
 CONTROLNET_MODELS=(
-    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors"
-    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_mid.safetensors?download"
-    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_diffusers_xl_openpose.safetensors"
-    "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_canny-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_depth-fp16.safetensors"
-    "https://huggingface.co/kohya-ss/ControlNet-diff-modules/resolve/main/diff_control_sd15_depth_fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_hed-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_mlsd-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_normal-fp16.safetensors"
-    "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_openpose-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_scribble-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
-    "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_canny-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_color-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_depth-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_keypose-fp16.safetensors"
-    "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_openpose-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_seg-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_sketch-fp16.safetensors"
-    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_style-fp16.safetensors"
+   
 )
 
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
