@@ -101,25 +101,25 @@ function provisioning_start() {
     provisioning_get_apt_packages
     provisioning_get_nodes
     provisioning_get_pip_packages
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/ckpt" \
-        "${CHECKPOINT_MODELS[@]}"
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/unet" \
-        "${UNET_MODELS[@]}"
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/lora" \
-        "${LORA_MODELS[@]}"
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/controlnet" \
-        "${CONTROLNET_MODELS[@]}"
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/vae" \
-        "${VAE_MODELS[@]}"
-    provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/esrgan" \
-        "${UPSCALE_MODELS[@]}"
+    # (상단에 WORKSPACE 기본값도 같이 추천)
+    export WORKSPACE="${WORKSPACE:-/workspace}"
+    COMFYUI_DIR="/workspace/ComfyUI"
+    COMFY_MODELS_DIR="${COMFYUI_DIR}/models"
+    
+    provisioning_get_models "${COMFY_MODELS_DIR}/checkpoints"    "${CHECKPOINT_MODELS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/unet"           "${UNET_MODELS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/loras"          "${LORA_MODELS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/controlnet"     "${CONTROLNET_MODELS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/vae"            "${VAE_MODELS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/upscale_models" "${UPSCALE_MODELS[@]}"
+    
+    # ✅ 네 스크립트에 “선언만” 돼 있던 것들도 실제로 받게 추가
+    provisioning_get_models "${COMFY_MODELS_DIR}/text_encoders"  "${TEXT_ENCODERS[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/clip_vision"    "${CLIP_VISION[@]}"
+    provisioning_get_models "${COMFY_MODELS_DIR}/sams"           "${SAMS[@]}"
+
     provisioning_print_end
+
 }
 
 function pip_install() {
@@ -131,39 +131,40 @@ function pip_install() {
 }
 
 function provisioning_get_apt_packages() {
-    if [[ -n $APT_PACKAGES ]]; then
-            sudo $APT_INSTALL ${APT_PACKAGES[@]}
+    if (( ${#APT_PACKAGES[@]} > 0 )); then
+        sudo $APT_INSTALL "${APT_PACKAGES[@]}"
     fi
 }
 
 function provisioning_get_pip_packages() {
-    if [[ -n $PIP_PACKAGES ]]; then
-            pip_install ${PIP_PACKAGES[@]}
+    if (( ${#PIP_PACKAGES[@]} > 0 )); then
+        pip_install "${PIP_PACKAGES[@]}"
     fi
 }
+
 
 function provisioning_get_nodes() {
     for repo in "${NODES[@]}"; do
         dir="${repo##*/}"
-        path="/opt/ComfyUI/custom_nodes/${dir}"
+        path="${COMFYUI_DIR}/custom_nodes/${dir}"
         requirements="${path}/requirements.txt"
+
+        mkdir -p "${COMFYUI_DIR}/custom_nodes"
+
         if [[ -d $path ]]; then
             if [[ ${AUTO_UPDATE,,} != "false" ]]; then
                 printf "Updating node: %s...\n" "${repo}"
                 ( cd "$path" && git pull )
-                if [[ -e $requirements ]]; then
-                   pip_install -r "$requirements"
-                fi
+                [[ -e $requirements ]] && pip_install -r "$requirements"
             fi
         else
             printf "Downloading node: %s...\n" "${repo}"
             git clone "${repo}" "${path}" --recursive
-            if [[ -e $requirements ]]; then
-                pip_install -r "${requirements}"
-            fi
+            [[ -e $requirements ]] && pip_install -r "$requirements"
         fi
     done
 }
+
 
 function provisioning_get_default_workflow() {
     if [[ -n $DEFAULT_WORKFLOW ]]; then
@@ -234,17 +235,23 @@ function provisioning_has_valid_civitai_token() {
 
 # Download from $1 URL to $2 file path
 function provisioning_download() {
-    if [[ -n $HF_TOKEN && $1 =~ ^https://([a-zA-Z0-9_-]+\.)?huggingface\.co(/|$|\?) ]]; then
+    local url="$1"
+    local outdir="$2"
+    local dotbytes="${3:-4M}"
+    local auth_token=""
+
+    if [[ -n "$HF_TOKEN" && $url =~ ^https://([a-zA-Z0-9_-]+\.)?huggingface\.co(/|$|\?) ]]; then
         auth_token="$HF_TOKEN"
-    elif 
-        [[ -n $CIVITAI_TOKEN && $1 =~ ^https://([a-zA-Z0-9_-]+\.)?civitai\.com(/|$|\?) ]]; then
+    elif [[ -n "$CIVITAI_TOKEN" && $url =~ ^https://([a-zA-Z0-9_-]+\.)?civitai\.com(/|$|\?) ]]; then
         auth_token="$CIVITAI_TOKEN"
     fi
-    if [[ -n $auth_token ]];then
-        wget --header="Authorization: Bearer $auth_token" -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P "$2" "$1"
+
+    if [[ -n "$auth_token" ]]; then
+        wget --header="Authorization: Bearer $auth_token" -nc --content-disposition --show-progress -e dotbytes="$dotbytes" -P "$outdir" "$url"
     else
-        wget -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P "$2" "$1"
+        wget -nc --content-disposition --show-progress -e dotbytes="$dotbytes" -P "$outdir" "$url"
     fi
 }
+
 
 provisioning_start
