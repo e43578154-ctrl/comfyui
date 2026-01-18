@@ -26,13 +26,17 @@ NODES=(
 CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/2167369?token=77deade77457c5791ac21423204baa47"
     "https://civitai.com/api/download/models/2319122?token=77deade77457c5791ac21423204baa47"
+    "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q6_K.gguf?download=true"
+    "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q6_K.gguf?download=true"
     
 )
 
 
 
 UNET_MODELS=(
-    "https://civitai.com/api/download/models/2584698?type=Model&format=GGUF&size=full&fp=fp8"
+    "https://civitai.com/api/download/models/2584698?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/2512098?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/2512333?token=77deade77457c5791ac21423204baa47"
 
 )
 
