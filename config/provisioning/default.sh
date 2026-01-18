@@ -24,7 +24,8 @@ NODES=(
 )
 
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2514310?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+    "https://civitai.com/api/download/models/2167369?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/2319122?token=77deade77457c5791ac21423204baa47"
     
 )
 
@@ -43,7 +44,7 @@ CLIP_VISION=(
     "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
 )
 
-SAMS= (
+SAMS=(
     "https://huggingface.co/1038lab/sam/resolve/main/sam_vit_b.safetensors?download=true"
 )
 
@@ -65,15 +66,23 @@ LORA_MODELS=(
 )
 
 VAE_MODELS=(
+    "https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
+    "https://civitai.com/api/download/models/290640?token=77deade77457c5791ac21423204baa47"
     
 )
 
 UPSCALE_MODELS=(
-    "https://huggingface.co/Kim2091/AnimeSharpV3/resolve/main/2x-AnimeSharpV3.safetensors?download=true"
+    "https://huggingface.co/Kim2091/AnimeSharpV3/resolve/main/2x-AnimeSharpV3.safetensors"
+    "https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x4.pth"
+    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth"
+    "https://huggingface.co/Akumetsu971/SD_Anime_Futuristic_Armor/resolve/main/4x_NMKD-Siax_200k.pth"
   
 )
 
 CONTROLNET_MODELS=(
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors"
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_mid.safetensors?download"
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_diffusers_xl_openpose.safetensors"
    
 )
 
