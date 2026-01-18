@@ -24,8 +24,8 @@ NODES=(
 )
 
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2167369?token=77deade77457c5791ac21423204baa47"
-    "https://civitai.com/api/download/models/2319122?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/2167369?token=2529c8ff752a42de0176bcb6092e0b83"
+    "https://civitai.com/api/download/models/2319122?token=2529c8ff752a42de0176bcb6092e0b83"
     "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q6_K.gguf?download=true"
     "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q6_K.gguf?download=true"
     
@@ -34,9 +34,9 @@ CHECKPOINT_MODELS=(
 
 
 UNET_MODELS=(
-    "https://civitai.com/api/download/models/2584698?token=77deade77457c5791ac21423204baa47"
-    "https://civitai.com/api/download/models/2512098?token=77deade77457c5791ac21423204baa47"
-    "https://civitai.com/api/download/models/2512333?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/2584698?token=2529c8ff752a42de0176bcb6092e0b83"
+    "https://civitai.com/api/download/models/2512098?token=2529c8ff752a42de0176bcb6092e0b83"
+    "https://civitai.com/api/download/models/2512333?token=2529c8ff752a42de0176bcb6092e0b83"
 
 )
 
@@ -71,7 +71,7 @@ LORA_MODELS=(
 
 VAE_MODELS=(
     "https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
-    "https://civitai.com/api/download/models/290640?token=77deade77457c5791ac21423204baa47"
+    "https://civitai.com/api/download/models/290640?token=2529c8ff752a42de0176bcb6092e0b83"
     
 )
 
