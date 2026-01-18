@@ -24,7 +24,7 @@ NODES=(
 )
 
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2167369?token=2529c8ff752a42de0176bcb6092e0b83"
+    "https://huggingface.co/IbarakiDouji/WAI-NSFW-illustrious-SDXL/resolve/main/waiNSFWIllustrious_v150.safetensors?download=true"
     "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q6_K.gguf?download=true"
     "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q6_K.gguf?download=true"
     
@@ -33,8 +33,8 @@ CHECKPOINT_MODELS=(
 
 
 UNET_MODELS=(
-    "https://civitai.com/api/download/models/2512098?token=2529c8ff752a42de0176bcb6092e0b83"
-    "https://civitai.com/api/download/models/2512333?token=2529c8ff752a42de0176bcb6092e0b83"
+    "https://huggingface.co/AliceThirty/Dasiwa-WAN2.2-I2V-14B-tastysin-V8.1-gguf/resolve/main/high/Q5_K_S/DasiwaWAN22I2V14BV8V1_tastysinHighV81-Q5_K_S.gguf?download=true"
+    "https://huggingface.co/AliceThirty/Dasiwa-WAN2.2-I2V-14B-tastysin-V8.1-gguf/resolve/main/low/Q5_K_S/DasiwaWAN22I2V14BV8V1_tastysinLowV81-Q5_K_S.gguf?download=true"
 
 )
 
@@ -69,7 +69,7 @@ LORA_MODELS=(
 
 VAE_MODELS=(
     "https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
-    "https://civitai.com/api/download/models/290640?token=2529c8ff752a42de0176bcb6092e0b83"
+    
     
 )
 
